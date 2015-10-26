@@ -4,12 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Input;
 
-
+/**
+ * Class LoginController
+ * @package App\Http\Controllers
+ */
 class LoginController extends Controller
 {
+    /**
+     * Login HTTP POST
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postLogin(Request $request)
     {
         //TODO
@@ -34,11 +41,19 @@ class LoginController extends Controller
 
     }
 
+    /**
+     * @return \Illuminate\View\View
+     */
     public function getLogin()
     {
         return view('login');
     }
 
+    /**
+     * @param $email
+     * @param $password
+     * @return bool
+     */
     private function login($email, $password)
     {
         //TODO: Mirar a la DB.

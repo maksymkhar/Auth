@@ -24,6 +24,7 @@ Route::get('/login',        ['as' => 'auth.getLogin', 'uses' => 'LoginController
 
 Route::post('/postLogin',   ['as' => 'auth.postLogin', 'uses' => 'LoginController@postLogin']);
 
+
 Route::get('/resource', function () {
 
 
