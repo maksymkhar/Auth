@@ -16,13 +16,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('home');
+});
+
 Route::get('/resource', function () {
+
 
     $authenticated = false;
 
     Session::set('authenticated', true);
 
-    //dd(Session::all());
     if (Session::has('authenticated'))
     {
         if (Session::get('authenticated'))
