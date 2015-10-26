@@ -17,6 +17,16 @@ Route::get('/', function () {
 
 Route::get('/resource', function () {
 
+    $authenticated = false;
 
-    return view('resource');
+    if ($authenticated)
+    {
+        return view('resource');
+    }
+    else
+    {
+        return view('login');
+    }
+
+
 });
