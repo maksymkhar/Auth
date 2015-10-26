@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Laravel</title>
+    <title>Resource</title>
 </head>
 <body>
 <div >
