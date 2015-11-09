@@ -57,22 +57,19 @@ class LoginController extends Controller
      */
     private function login($email, $password)
     {
-        //TODO: Mirar a la DB.
-
         //$user = User::findOrFail(id);
 
         $user = User::where('email', $email)->first();
 
         if ($user == null) return false;
 
-        if ($user->password == $password)
-        {
+
+        if (Hash::check($password, $user->password)) {
             return true;
         }
         else
         {
             return false;
         }
-
     }
 }

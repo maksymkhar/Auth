@@ -14,6 +14,55 @@ class ExampleTest extends TestCase
     public function testBasicExample()
     {
         $this->visit('/')
-             ->see('Laravel 5');
+            ->see('TROLOLOLO');
     }
+
+    /**
+     * Check login page.
+     *
+     * @return void
+     */
+    public function testLoginPage()
+    {
+        $this->visit(route('auth.getLogin'))
+            ->see('LOGIN');
+    }
+
+    /**
+     * Check that a user without access go to login page.
+     *
+     * @return void
+     */
+    public function testUserWithoutAccesToResource()
+    {
+        $this->unlogged();
+        $this->visit('/resource')
+            ->seePageIs(route('auth.getLogin'))
+            ->see('Login')
+            ->dontSee('Logout');
+    }
+
+    /**
+     * Check that a user with access go to login page.
+     *
+     * @return void
+     */
+    public function testUserWithAccesToResource()
+    {
+        $this->logged();
+        $this->visit('/resource')
+            ->seePageIs('/resource')
+            ->dontSee('LOGIN');
+    }
+
+    public function logged()
+    {
+        Session::set("authenticated", true);
+    }
+
+    public function unlogged()
+    {
+        Session::set("authenticated", false);
+    }
+
 }

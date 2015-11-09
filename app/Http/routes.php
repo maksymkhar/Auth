@@ -32,7 +32,7 @@ Route::get('/resource', function () {
 
     $authenticated = false;
 
-    Session::set('authenticated', true);
+    //Session::set('authenticated', false);
 
     if (Session::has('authenticated'))
     {
@@ -48,7 +48,11 @@ Route::get('/resource', function () {
     }
     else
     {
-        return view('login');
+        return redirect()->route('auth.getLogin');
     }
 
+});
+
+Route::get('/flushSession', function () {
+    Session::flush();
 });
