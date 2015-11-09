@@ -65,4 +65,20 @@ class ExampleTest extends TestCase
         Session::set("authenticated", false);
     }
 
+    public function testLoginPageHaveRegisterLinkAndWorksOk()
+    {
+        $this->visit('/login')
+            ->click('Register')
+            ->seePageIs('/register');
+    }
+
+    public function testPostLogin()
+    {
+        $this->visit('/login')
+            ->type('pepito@mail.com','email')
+            ->type('pepito','password')
+            ->press('Login')
+            ->seePageIs('/login');
+    }
+
 }

@@ -56,3 +56,14 @@ Route::get('/resource', function () {
 Route::get('/flushSession', function () {
     Session::flush();
 });
+
+Route::post('/postLogin', [
+    'as' => 'auth.postLogin',
+    'uses' => 'LoginController@postLogin']);
+
+Route::get('/register', [
+    'as' => 'auth.register',
+        function() {
+            echo 'holaaa';
+        }]
+);

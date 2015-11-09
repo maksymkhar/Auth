@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Hash;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -64,6 +65,7 @@ class LoginController extends Controller
         if ($user == null) return false;
 
 
+        //if (Hash::check($password, $user->password)) {
         if (Hash::check($password, $user->password)) {
             return true;
         }
