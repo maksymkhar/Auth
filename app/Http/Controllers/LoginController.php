@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -57,6 +58,20 @@ class LoginController extends Controller
     private function login($email, $password)
     {
         //TODO: Mirar a la DB.
-        return false;
+
+        //$user = User::findOrFail(id);
+
+        $user = User::where('email', $email)->first();
+
+
+        if ($user->password == $password)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 }
