@@ -68,6 +68,8 @@
                 <input type="password" class="form-control" id="password_confirm" name="password_confirm" required>
             </div>
 
+            <!--input type="number" class="form-control" name="is_admin"-->
+
             <button id="Login" type="submit" class="btn btn-default">Register</button>
             <button type="reset" class="btn btn-default">Reset</button>
 
