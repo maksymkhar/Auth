@@ -25,14 +25,16 @@ class RegisterController extends Controller
     public function postRegister()
     {
         //dd(Input::all());
-
+/*
         $user = new User();
         $user->name = Input::get('name');
         $user->email = Input::get('email');
         $user->password = Input::get('password');
 
         $user->save();
+*/
+        User::create(Input::all());
 
-        return redirect('/login');
+        return redirect(route('auth.getLogin'));
     }
 }

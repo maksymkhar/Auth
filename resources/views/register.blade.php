@@ -76,8 +76,6 @@
         <label>Already have an account?</label>
         <a id="Login" href="{{ route('auth.getLogin') }}">Login</a>
 
-
-
     </div>
 </div>
 </body>
