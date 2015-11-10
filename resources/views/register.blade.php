@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Register</title>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -46,25 +46,35 @@
 <body>
 <div class="container">
     <div class="content">
-        <div class="title">LOGIN</div>
+        <div class="title">REGISTER</div>
 
-        <form method="post" action={{ route('auth.postLogin') }}>
+        <form method="post" action={{ route('register.postRegister') }}>
             <input type="hidden" value="{{ csrf_token() }}" name="_token">
+
+            <div class="form-group">
+                <label for="name">User name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
-
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <button id="Login" type="submit" class="btn btn-default">Login</button>
+            <div class="form-group">
+                <label for="password_confirm">Confirm password</label>
+                <input type="password" class="form-control" id="password_confirm" name="password_confirm" required>
+            </div>
+
+            <button id="Login" type="submit" class="btn btn-default">Register</button>
             <button type="reset" class="btn btn-default">Reset</button>
+
         </form>
 
-        <label>Not have an account?</label>
-        <a id="Register" href="{{ route('auth.register') }}">Register!</a>
+        <label>Already have an account?</label>
+        <a id="Login" href="{{ route('auth.getLogin') }}">Login</a>
 
 
 

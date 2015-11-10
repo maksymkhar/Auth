@@ -63,7 +63,10 @@ Route::post('/postLogin', [
 
 Route::get('/register', [
     'as' => 'auth.register',
-        function() {
-            echo 'holaaa';
-        }]
-);
+    'uses' => 'RegisterController@getRegister']);
+
+Route::post('/register', [
+    'as' => 'register.postRegister',
+    'uses' => 'RegisterController@postRegister']);
+
+
