@@ -27,6 +27,11 @@
             font-weight: bold;
         }
 
+        li {
+            font-weight: bold;
+        }
+
+
         .container {
             text-align: center;
             display: table-cell;
@@ -48,6 +53,16 @@
     <div class="content">
         <div class="title">REGISTER</div>
 
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form method="post" action={{ route('register.postRegister') }}>
             <input type="hidden" value="{{ csrf_token() }}" name="_token">
 
@@ -64,8 +79,8 @@
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <div class="form-group">
-                <label for="password_confirm">Confirm password</label>
-                <input type="password" class="form-control" id="password_confirm" name="password_confirm" required>
+                <label for="password_confirmation">Confirm password</label>
+                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
             </div>
 
             <!--input type="number" class="form-control" name="is_admin"-->

@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Input;
 
 class RegisterController extends Controller
 {
@@ -20,20 +17,29 @@ class RegisterController extends Controller
     }
 
     /**
+     * @param Request $request
      * @return \Illuminate\View\View
      */
-    public function postRegister()
+    public function postRegister(Request $request)
     {
         //dd(Input::all());
 
+        $this->validate($request, [
+            'name' => 'required|max:100',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed'
+        ]);
+
         $user = new User();
-        $user->name = Input::get('name');
-        $user->email = bcrypt(Input::get('email'));
-        $user->password = Input::get('password');
+        $user->name = $request->get('name');
+        $user->email =$request->get('email');
+        $user->password =  bcrypt($request->get('password'));
 
         $user->save();
 
         //User::create(Input::all());
+        //User::create($request->all());
+
 
         return redirect(route('auth.getLogin'));
     }
