@@ -21,7 +21,10 @@ class LoginController extends Controller
      */
     public function postLogin(Request $request)
     {
-        //TODO
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
         $email = $request->get("email");
         $password = $request->get("password");
@@ -40,7 +43,6 @@ class LoginController extends Controller
             //TODO: redirect back.
             return redirect()->route('auth.getLogin');
         }
-
     }
 
     /**

@@ -27,6 +27,10 @@
             font-weight: bold;
         }
 
+        li {
+            font-weight: bold;
+        }
+
         .container {
             text-align: center;
             display: table-cell;
@@ -48,11 +52,21 @@
     <div class="content">
         <div class="title">LOGIN</div>
 
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form method="post" action={{ route('auth.postLogin') }}>
             <input type="hidden" value="{{ csrf_token() }}" name="_token">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <input type="email" class="form-control" id="email" name="email" placeholder="example@mail.com" required>
             </div>
 
             <div class="form-group">
