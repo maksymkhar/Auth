@@ -62,6 +62,14 @@
             </div>
         @endif
 
+        @if (Session::has('login_error'))
+            <div class="alert alert-danger">
+                <ul>
+                    {{ Session::get('login_error') }}
+                </ul>
+            </div>
+        @endif
+
         <form method="post" action={{ route('auth.postLogin') }}>
             <input type="hidden" value="{{ csrf_token() }}" name="_token">
             <div class="form-group">
@@ -79,7 +87,6 @@
 
         <label>Not have an account?</label>
         <a id="Register" href="{{ route('auth.register') }}">Register!</a>
-
 
 
     </div>

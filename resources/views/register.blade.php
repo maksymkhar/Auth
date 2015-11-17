@@ -4,6 +4,8 @@
     <title>Register</title>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    <link href="{{'css/app.css'}}" rel="stylesheet" type="text/css">
+    <link href="{{'css/all.css'}}" rel="stylesheet" type="text/css">
 
     <style>
         html, body {
@@ -31,10 +33,8 @@
             font-weight: bold;
         }
 
-
         .container {
             text-align: center;
-            display: table-cell;
             vertical-align: middle;
         }
 
@@ -50,8 +50,12 @@
 </head>
 <body>
 <div class="container">
-    <div class="content">
+
+    <div class="jumbotron">
         <div class="title">REGISTER</div>
+    </div>
+
+    <div class="content">
 
         @if (count($errors) > 0)
             <div class="alert alert-danger">
@@ -70,9 +74,10 @@
                 <label for="name">User name</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{old('name')}}" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="emailFormGroup">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com" value="{{old('email')}}" required>
+                <div v-show="exists">Email already exists!!</div>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
@@ -85,7 +90,7 @@
 
             <!--input type="number" class="form-control" name="is_admin"-->
 
-            <button id="Login" type="submit" class="btn btn-default">Register</button>
+            <button id="Login" type="submit" class="btn btn-primary">Register</button>
             <button type="reset" class="btn btn-default">Reset</button>
 
         </form>
@@ -95,5 +100,9 @@
 
     </div>
 </div>
+
+<script src="{{asset('js/all.js')}}"></script>
+<script src="{{asset('js/main.js')}}"></script>
+
 </body>
 </html>

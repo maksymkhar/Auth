@@ -41,6 +41,7 @@ class LoginController extends Controller
         else
         {
             //TODO: redirect back.
+            $request->session()->flash('login_error', 'Login error.');
             return redirect()->route('auth.getLogin');
         }
     }
