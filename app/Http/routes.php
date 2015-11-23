@@ -28,29 +28,8 @@ Route::post('/postLogin', [
     'as' => 'auth.postLogin',
     'uses' => 'LoginController@postLogin']);
 
-Route::get('/resource', function () {
-
-/*    $authenticated = false;
-
-    //Session::set('authenticated', false);
-
-    if (Session::has('authenticated'))
-    {
-        if (Session::get('authenticated'))
-        {
-            $authenticated = true;
-        }
-    }
-
-    if ($authenticated)
-    {
-        return view('resource');
-    }
-    else
-    {
-        return redirect()->route('auth.getLogin');
-    }*/
-
+Route::get('/resource', function ()
+{
     if (Auth::check())
     {
         return view('resource');
@@ -59,7 +38,6 @@ Route::get('/resource', function () {
     {
         return redirect()->route('auth.getLogin');
     }
-
 });
 
 Route::get('/flushSession', function () {
