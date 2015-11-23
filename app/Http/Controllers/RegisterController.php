@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use stdClass;
 
 
 class RegisterController extends Controller
 {
+    protected $email;
+    protected $name;
+
     /**
      * @return \Illuminate\View\View
      */
@@ -40,7 +44,30 @@ class RegisterController extends Controller
         //User::create(Input::all());
         //User::create($request->all());
 
+        $this->email = $user->email;
+        $this->name = $user->name;
+
+        $this->sendRegiserEmail();
 
         return redirect(route('auth.getLogin'));
+    }
+
+    public function sendRegiserEmail()
+    {
+        $emailData = new stdClass();
+
+        $emailData->email = $this->email;
+        $emailData->name = $this->name;
+        $emailData->subject = "Welcome user " . $this->name;
+
+        $data['name'] = $this->name;
+
+
+        \Mail::send('emails.message', $data, function ($message) use ($emailData) {
+
+            $message->from(env('CONTACT_MAIL'), env('CONTACT_NAME'));
+            $message->to($emailData->email, $emailData->name);
+            $message->subject($emailData->subject);
+        });
     }
 }
