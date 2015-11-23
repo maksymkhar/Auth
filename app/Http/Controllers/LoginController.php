@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Auth;
 use Hash;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Session;
 
 /**
  * Class LoginController
@@ -29,21 +31,31 @@ class LoginController extends Controller
         $email = $request->get("email");
         $password = $request->get("password");
 
-        \Debugbar::info($email . "|" . $password);
+//        //\Debugbar::info($email . "|" . $password);
+//        //echo "test";
+//
+//        if ($this->login($email, $password))
+//        {
+//            //Session::set('authenticated', true);
+//            return redirect()->route('auth.home');
+//        }
+//        else
+//        {
+//            //TODO: redirect back.
+//            $request->session()->flash('login_error', 'Login error.');
+//            return redirect()->route('auth.getLogin');
+//        }
 
-        echo "test";
-
-        if ($this->login($email, $password))
+        if (Auth::attempt(['email' => $email, 'password' => $password]))
         {
-            //TODO: redirect to home.
+            // Authentication passed...
             return redirect()->route('auth.home');
         }
         else
         {
-            //TODO: redirect back.
-            $request->session()->flash('login_error', 'Login error.');
             return redirect()->route('auth.getLogin');
         }
+
     }
 
     /**
@@ -59,22 +71,22 @@ class LoginController extends Controller
      * @param $password
      * @return bool
      */
-    private function login($email, $password)
-    {
-        //$user = User::findOrFail(id);
-
-        $user = User::where('email', $email)->first();
-
-        if ($user == null) return false;
-
-
-        //if (Hash::check($password, $user->password)) {
-        if (Hash::check($password, $user->password)) {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+//    private function login($email, $password)
+//    {
+//        //$user = User::findOrFail(id);
+//
+//        $user = User::where('email', $email)->first();
+//
+//        if ($user == null) return false;
+//
+//
+//        //if (Hash::check($password, $user->password)) {
+//        if (Hash::check($password, $user->password)) {
+//            return true;
+//        }
+//        else
+//        {
+//            return false;
+//        }
+//    }
 }

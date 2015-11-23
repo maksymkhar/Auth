@@ -55,12 +55,12 @@ class ExampleTest extends TestCase
 
     public function logged()
     {
-        Session::set("authenticated", true);
+        Auth::loginUsingId(1);
     }
 
     public function unlogged()
     {
-        Session::set("authenticated", false);
+        Auth::logout();
     }
 
     public function atestLoginPageHaveRegisterLinkAndWorksOk()
