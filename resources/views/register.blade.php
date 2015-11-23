@@ -32,7 +32,7 @@
         }
 
         .title {
-            font-size: 96px;
+            font-size: 70px;
         }
     </style>
 </head>
@@ -55,40 +55,56 @@
             </div>
         @endif
 
-        <form method="post" action={{ route('register.postRegister') }}>
-            <input type="hidden" value="{{ csrf_token() }}" name="_token">
+        <div class="panel panel-primary">
 
-            <div class="form-group">
-                <label for="name">User name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{old('name')}}" required>
+            <div class="panel-heading">Be a member!</div>
+
+            <div class="panel-body">
+                <form method="post" action={{ route('register.postRegister') }}>
+                    <input type="hidden" value="{{ csrf_token() }}" name="_token">
+
+                    <div class="form-group">
+                        <label for="name">User name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{old('name')}}" required>
+                    </div>
+                    <div class="form-group" id="emailFormGroup">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email"
+                               placeholder="email@example.com"
+                               value="{{old('email')}}"
+                               v-on:onblur="checkEmailExists"
+                               required>
+                        <div v-show="exists">Email already exists!!</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password_confirmation">Confirm password</label>
+                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                    </div>
+
+                    <!--input type="number" class="form-control" name="is_admin"-->
+
+                    <button id="Login" type="submit" class="btn btn-primary">Register</button>
+                    <button type="reset" class="btn btn-default">Reset</button>
+
+                </form>
             </div>
-            <div class="form-group" id="emailFormGroup">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email"
-                       placeholder="email@example.com"
-                       value="{{old('email')}}"
-                       v-on:onblur="checkEmailExists"
-                       required>
-                <div v-show="exists">Email already exists!!</div>
+
+            <div class="panel-footer">
+
+                <label>Already have an account?</label>
+                <a id="Login" href="{{ route('auth.getLogin') }}">Login</a>
+
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <label for="password_confirmation">Confirm password</label>
-                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
-            </div>
+        </div>
 
-            <!--input type="number" class="form-control" name="is_admin"-->
 
-            <button id="Login" type="submit" class="btn btn-primary">Register</button>
-            <button type="reset" class="btn btn-default">Reset</button>
 
-        </form>
 
-        <label>Already have an account?</label>
-        <a id="Login" href="{{ route('auth.getLogin') }}">Login</a>
+
 
     </div>
 </div>

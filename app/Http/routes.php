@@ -30,7 +30,7 @@ Route::post('/postLogin', [
 
 Route::get('/resource', function () {
 
-    $authenticated = false;
+/*    $authenticated = false;
 
     //Session::set('authenticated', false);
 
@@ -43,6 +43,15 @@ Route::get('/resource', function () {
     }
 
     if ($authenticated)
+    {
+        return view('resource');
+    }
+    else
+    {
+        return redirect()->route('auth.getLogin');
+    }*/
+
+    if (Auth::check())
     {
         return view('resource');
     }
