@@ -3,7 +3,10 @@
 <head>
     <title>Login</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+    <link href="{{'css/app.css'}}" rel="stylesheet" type="text/css">
+    <link href="{{'css/all.css'}}" rel="stylesheet" type="text/css">
 
     <style>
         html, body {
@@ -15,25 +18,12 @@
             padding: 0;
             width: 100%;
             display: table;
-            font-weight: 100;
-            font-family: 'Lato';
-        }
-
-        label {
             font-weight: bold;
-        }
-
-        a {
-            font-weight: bold;
-        }
-
-        li {
-            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .container {
             text-align: center;
-            display: table-cell;
             vertical-align: middle;
         }
 
@@ -49,8 +39,12 @@
 </head>
 <body>
 <div class="container">
-    <div class="content">
+
+    <div class="jumbotron">
         <div class="title">LOGIN</div>
+    </div>
+
+    <div class="content">
 
         @if (count($errors) > 0)
             <div class="alert alert-danger">

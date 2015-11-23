@@ -3,7 +3,8 @@
 <head>
     <title>Register</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
     <link href="{{'css/app.css'}}" rel="stylesheet" type="text/css">
     <link href="{{'css/all.css'}}" rel="stylesheet" type="text/css">
 
@@ -17,22 +18,9 @@
             padding: 0;
             width: 100%;
             display: table;
-            font-weight: 100;
-            font-family: 'Lato';
-        }
-
-        label {
             font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
         }
-
-        a {
-            font-weight: bold;
-        }
-
-        li {
-            font-weight: bold;
-        }
-
         .container {
             text-align: center;
             vertical-align: middle;
@@ -76,7 +64,11 @@
             </div>
             <div class="form-group" id="emailFormGroup">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com" value="{{old('email')}}" required>
+                <input type="email" class="form-control" id="email" name="email"
+                       placeholder="email@example.com"
+                       value="{{old('email')}}"
+                       v-on:onblur="checkEmailExists"
+                       required>
                 <div v-show="exists">Email already exists!!</div>
             </div>
             <div class="form-group">

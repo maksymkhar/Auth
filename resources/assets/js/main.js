@@ -7,5 +7,12 @@ new Vue({
     el: '#emailFormGroup',
     data: {
         exists: false
+    },
+    methods: {
+        checkEmailExists: function (event)
+        {
+            alert('Trolo');
+            this.exists = true;
+        }
     }
 });
