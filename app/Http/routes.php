@@ -27,17 +27,35 @@ Route::get('/login', [
 Route::post('/postLogin', [
     'as' => 'auth.postLogin',
     'uses' => 'LoginController@postLogin']);
-
+/*
 Route::get('/resource', function ()
 {
-    if (Auth::check())
-    {
-        return view('resource');
-    }
-    else
-    {
-        return redirect()->route('auth.getLogin');
-    }
+    if (Auth::check()) { return view('resource'); }
+    else { return redirect()->route('auth.getLogin'); }
+});
+*/
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/resource', [
+        'as' => 'resource',
+        'middleware' => 'auth', function() {
+            return view('resource');
+        }]);
+});
+
+
+
+/*
+Route::get('/resource', [
+    'as' => 'resource',
+    'middleware' => 'auth',
+    'uses' => 'ResourceController@getResourse'] );
+*/
+
+Route::get('/phpinfo', function()
+{
+   return phpinfo();
 });
 
 Route::get('/flushSession', function () {
